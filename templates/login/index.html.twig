@@ -1,0 +1,46 @@
+{% extends 'base.guest.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+
+    <section class="login-page">
+        <div class="row">
+            <div class="col-12 col-lg-6 col-xl-4 align-self-center">
+                <h1 class="fw-bold mb-2 mt-5 text-center title">New Bills</h1>
+                <img class="img-fluid shield m-auto d-block my-4" src="{{ asset('images/bouclier.jpg') }}"
+                     alt="bouclier">
+                {% if error %}
+                    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                <form action="{{ path('app_login') }}" method="post" class="d-flex flex-column px-5 pb-4">
+                    <!-- Email input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="username">Adresse email</label>
+                        <input type="text" id="username" name="_username" value="user@bills.fr"
+                               class="form-control" required>
+                    </div>
+
+                    <!-- Password input -->
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="password">Mot de passe</label>
+                        <input type="password" id="password" name="_password" value="user" class="form-control"
+                               required>
+                    </div>
+
+                    <!-- Submit button -->
+                    {# If you want to control the URL the user is redirected to on success
+                            <input type="hidden" name="_target_path" value="/account"> #}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button type="submit" class="btn btn-secondary mb-4">Connexion</button>
+
+                </form>
+            </div>
+            <div class="col-12 col-lg-6 col-xl-8">
+                <img class="img-fluid" src="{{ asset('images/bg-login2.jpg') }}" alt="image">
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

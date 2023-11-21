@@ -1,0 +1,34 @@
+<div{{ attributes }} class="my-4 me-3 filter">
+    {{ form_start(form, {
+        attr: {
+            'data-action': 'live#action',
+            'data-action-name': 'prevent|save'
+        }
+    }) }}
+    <div class="d-flex align-items-center gap-3 mb-3">
+        <div class="form-check">
+            {{ form_widget(form.active) }}
+            <label class="form-check-label w-auto" for="active">
+                {{ form_label(form.active) }}
+            </label>
+        </div>
+
+        <div class="form-check">
+            {{ form_widget(form.archived) }}
+            <label class="form-check-label w-auto" for="archived">
+                {{ form_label(form.archived) }}
+            </label>
+        </div>
+
+        <div class="form-check">
+            {{ form_widget(form.closed) }}
+            <label class="form-check-label w-auto" for="closed">
+                {{ form_label(form.closed) }}
+            </label>
+        </div>
+
+        {{ form_widget(form.search) }}
+        <button class="btn btn-outline-secondary" type="submit">Filtrer</button>
+    </div>
+    {{ form_end(form) }}
+</div>

@@ -1,0 +1,29 @@
+<section{{ attributes }}>
+    <h5 class="mb-5 ms-3">
+        {% if this.projects | length > 0 %}
+            {{ this.projects | length }} {{ this.projects | length == 1 ? 'projet trouvé' : 'projets trouvés' }}
+        {% else %}
+            Aucun projet ne correspond à vos critères !
+        {% endif %}
+    </h5>
+    <div class="main-project">
+        {% for project in this.projects %}
+            <div class="mb-sm-0">
+                <a class="card-link {{ STATUS[project.status] }}"
+                   href="{{ path('app_detail_project', {slug: project.slug}) }}">
+                    <div class="card" data-status="{{ STATUS[project.status] }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.name }}</h5>
+                            <small>{{ project.createdAt | date('d-m-Y') }}</small>
+                            <div class="mt-1">
+                                <span class="low price d-block {{ project.selected == 1 ? 'active' : '' }}">14920,60€</span>
+                                <span class="middle price d-block {{ project.selected == 2 ? 'active' : '' }}">20630,90€</span>
+                                <span class="high price d-block {{ project.selected == 3 ? 'active' : '' }}">41520,50€</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</section>

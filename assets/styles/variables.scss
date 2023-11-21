@@ -1,0 +1,75 @@
+/*--------------------------
+| Colors
+----------------------------*/
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/variables-dark";
+
+$white               : #ffffff;
+$dark                : #000c29;
+$primary             : #0f307d;
+$secondary           : #bc58f5;
+$blue                : #527aa7;
+$light-blue          : #698eb8;
+$grey                : #b0b0b0;
+$grey-light          : #dcdcdc;
+
+$high                : #c30000;
+$middle              : orange;
+$low                 : green;
+
+$expert              : #046077;
+$confirmed           : #0189ab;
+$junior              : #00b1dd;
+
+$custom-theme-colors : (
+        "primary": $primary,
+        "secondary": $secondary,
+        "blue": $blue,
+        "dark": $dark
+);
+$theme-colors        : map-merge($theme-colors, $custom-theme-colors);
+
+@import '~bootstrap/scss/bootstrap.scss';
+//@import "bootstrap/scss/maps";
+//@import "bootstrap/scss/mixins";
+//@import "bootstrap/scss/utilities";
+//@import "bootstrap/scss/root";
+//@import "bootstrap/scss/reboot";
+/*--------------------------
+| Font family
+----------------------------*/
+
+
+/*--------------------------
+| Font size
+----------------------------*/
+$font-x-small        : 12px;
+$font-small          : 14px;
+$font-base           : 16px;
+
+$font-h1             : 2em;
+$font-h2             : 1.5em;
+$font-h3             : 1.17em;
+$font-h4             : 1em;
+$font-h5             : .83em;
+$font-h6             : .67em;
+
+/*--------------------------
+| Spaces
+----------------------------*/
+$space-small         : 14px;
+$space-base          : 16px;
+$space-medium        : .67em;
+$space-large         : .83em;
+$space-largest       : 1em;
+$space-xl            : 1.17em;
+$space-2xl           : 1.5em;
+
+/*--------------------------
+| Other
+----------------------------*/
+$border-small        : .3em;
+$border              : .5em;
+$border-large        : .75em;
+$border-xl           : 16px;

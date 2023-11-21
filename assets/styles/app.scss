@@ -1,0 +1,24 @@
+@import "variables";
+@import "generic";
+@import "navbar";
+@import "project";
+@import "button";
+@import "form";
+
+.form-control:focus {
+    box-shadow : none;
+}
+
+.login-page {
+    min-height  : 100vh;
+    display     : flex;
+    align-items : center;
+
+    .title {
+        font-size : 50px;
+    }
+
+    .shield {
+        max-width : 100px;
+    }
+}

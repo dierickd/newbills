@@ -1,0 +1,24 @@
+*, *::before, *::after {
+    box-sizing : border-box;
+}
+
+body {
+    background-color : $white;
+}
+
+.main-container {
+    height   : calc(100vh - 4.5em);
+    overflow : auto;
+    padding  : $space-2xl;
+    width    : 100%;
+}
+
+.main-header {
+    border-bottom  : .5px solid $grey;
+    padding-inline : $space-2xl;
+
+    .title {
+        margin-block : $space-medium;
+        font-size    : $h3-font-size;
+    }
+}
