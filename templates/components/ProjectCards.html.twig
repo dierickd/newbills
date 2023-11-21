@@ -10,7 +10,7 @@
         {% for project in this.projects %}
             <div class="mb-sm-0">
                 <a class="card-link {{ STATUS[project.status] }}"
-                   href="{{ path('app_detail_project', {slug: project.slug}) }}">
+                   href="{{ path('app_project_detail', {slug: project.slug}) }}">
                     <div class="card" data-status="{{ STATUS[project.status] }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ project.name }}</h5>

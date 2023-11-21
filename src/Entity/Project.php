@@ -82,7 +82,7 @@ class Project
         return $this;
     }
 
-    public function isStatus(): ?int
+    public function getStatus(): ?int
     {
         return $this->status;
     }

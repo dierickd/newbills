@@ -13,11 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    public function index(#[MapQueryString()] ?SearchDTO $searchDto = null): Response
+    public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
-            'STATUS' => Constants::getStatus(),
-            'searchDto' => $searchDto
-        ]);
+        return $this->render('home/index.html.twig');
     }
 }

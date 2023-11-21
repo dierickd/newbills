@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProjectDetailController!{% endblock %}
+
+{% block body %}
+    <div class="main-header"><h1 class="title">{{ project.name }}</h1></div>
+    <div class="main-container">
+        {% if project.status == 2 %}
+            <div class="alert alert-danger border-danger p-4 rounded-0">
+                Le project <b>{{ project.name }}</b> est actuellement fermé!
+            </div>
+        {% elseif project.status == 3 %}
+            <div class="alert alert-warning border-warning p-4 rounded-0">
+                Le project <b>{{ project.name }}</b> est actuellement archivé!
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
