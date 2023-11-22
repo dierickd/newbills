@@ -6,6 +6,7 @@ use App\DTO\SearchDTO;
 use App\Entity\Project;
 use App\Services\Constants;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 use function Doctrine\ORM\QueryBuilder;
 
@@ -24,7 +25,7 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
-    public function search(?SearchDTO $searchDto): array
+    public function search(?SearchDTO $searchDto): Query
     {
         $checkboxChecked = array_keys((array)$searchDto, true, true);
         $query = $this->createQueryBuilder('p');
@@ -41,7 +42,6 @@ class ProjectRepository extends ServiceEntityRepository
             ->setParameter('search', '%' . $searchDto?->search . '%')
             ->orderBy('p.created_at', 'DESC');
 
-        return $query->getQuery()
-            ->getResult();
+        return $query->getQuery();
     }
 }
