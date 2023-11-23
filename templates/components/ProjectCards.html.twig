@@ -1,11 +1,4 @@
 <section{{ attributes }}>
-    <h5 class="mb-5 ms-3">
-        {% if this.projects | length > 0 %}
-            {{ this.projects | length }} {{ this.projects | length == 1 ? 'projet trouvé' : 'projets trouvés' }}
-        {% else %}
-            Aucun projet ne correspond à vos critères !
-        {% endif %}
-    </h5>
     <div class="main-project">
         {% for project in this.projects %}
             <div class="mb-sm-0">
@@ -26,7 +19,7 @@
             </div>
         {% endfor %}
     </div>
-    <div class="navigation text-center">
+    <div class="navigation me-3 mt-3">
         {{ knp_pagination_render(this.pagination) }}
     </div>
 </section>

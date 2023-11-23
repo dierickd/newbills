@@ -1,0 +1,148 @@
+.navigation .pagination {
+    justify-content : flex-end;
+    column-gap      : $space-xsmall;
+
+    > span a, > .current {
+        display         : grid;
+        justify-content : center;
+        align-items     : center;
+        width           : 30px;
+        height          : 30px;
+        font-size       : $font-x-small;
+
+    }
+
+    > span.page a:hover {
+        background-color : $primary;
+        border           : 0.5px solid $primary;
+        color            : $light;
+    }
+
+    > .page {
+        border : 0.5px solid $grey-light;
+    }
+
+    > span > a {
+        text-decoration : none;
+    }
+
+    > .current {
+        background-color : $primary;
+        border           : 0.5px solid $primary;
+        color            : $light;
+    }
+
+    .first > a, .next > a, .previous > a, .last > a {
+        font-size : 0;
+        position  : relative;
+        opacity   : .5;
+        width     : 20px;
+
+        &:hover {
+            opacity : 1;
+        }
+    }
+
+    .last, .previous, .first, .next {
+        position : relative;
+
+        &::before {
+            display            : block;
+            position           : absolute;
+            font-size          : 10px;
+            background-color   : $light-blue;
+            color              : $light;
+            white-space        : nowrap;
+            padding            : 3px 5px;
+            z-index            : 50;
+            top                : -20px;
+            left               : 0;
+            -webkit-transform  : translateX(-50%);
+            -moz-transform     : translateX(-50%);
+            -ms-transform      : translateX(-50%);
+            -o-transform       : translateX(-50%);
+            transform          : translateX(-50%);
+            visibility         : hidden;
+        }
+    }
+
+    // btn first
+    .first {
+        &::before {
+            content : 'Première page';
+        }
+
+        & > a::before {
+            background : transparent url("../../public/images/chevron-double-left.svg") no-repeat center;
+        }
+
+        &:hover::before {
+            visibility : visible;
+        }
+    }
+
+    // btn last
+    .last {
+        &::before {
+            content : 'Dernière page';
+        }
+
+        & > a::before {
+            background : transparent url("../../public/images/chevron-double-right.svg") no-repeat center;
+        }
+
+        &:hover::before {
+            visibility : visible;
+        }
+    }
+
+    // btn next
+    .next {
+        &::before {
+            content : 'Page suivante';
+        }
+
+        & > a::before {
+            background : transparent url("../../public/images/chevron-right.svg") no-repeat center;
+        }
+
+        &:hover::before {
+            visibility : visible;
+        }
+    }
+
+    // btn previous
+    .previous {
+        &::before {
+            content : 'Page précédente';
+        }
+
+        & > a::before {
+            background : transparent url("../../public/images/chevron-left.svg") no-repeat center;
+        }
+
+        &:hover::before {
+            visibility : visible;
+        }
+    }
+
+    .last > a::before,
+    .previous > a::before,
+    .first > a::before,
+    .next > a::before {
+        content           : '';
+        display           : block;
+        position          : absolute;
+        top               : 50%;
+        left              : 50%;
+        -webkit-transform : translate(-50%, -50%);
+        -moz-transform    : translate(-50%, -50%);
+        -ms-transform     : translate(-50%, -50%);
+        -o-transform      : translate(-50%, -50%);
+        transform         : translate(-50%, -50%);
+        width             : 20px;
+        height            : 20px;
+        background-size   : contain;
+    }
+
+}

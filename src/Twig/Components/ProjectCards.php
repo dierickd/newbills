@@ -15,6 +15,8 @@ final class ProjectCards
 {
     use DefaultActionTrait;
 
+    private const PER_PAGE = 12;
+
     public ?SearchDTO $searchDto = null;
     public Request $request;
     public PaginationInterface $pagination;
@@ -29,7 +31,7 @@ final class ProjectCards
         $this->pagination = $this->paginator->paginate(
             $query,
             $this->request->query->getInt('page', 1),
-            10
+            self::PER_PAGE
         );
         return $this->pagination;
     }

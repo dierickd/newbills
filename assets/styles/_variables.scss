@@ -31,11 +31,6 @@ $custom-theme-colors : (
 $theme-colors        : map-merge($theme-colors, $custom-theme-colors);
 
 @import '~bootstrap/scss/bootstrap.scss';
-//@import "bootstrap/scss/maps";
-//@import "bootstrap/scss/mixins";
-//@import "bootstrap/scss/utilities";
-//@import "bootstrap/scss/root";
-//@import "bootstrap/scss/reboot";
 /*--------------------------
 | Font family
 ----------------------------*/
@@ -58,6 +53,7 @@ $font-h6             : .67em;
 /*--------------------------
 | Spaces
 ----------------------------*/
+$space-xsmall        : 8px;
 $space-small         : 14px;
 $space-base          : 16px;
 $space-medium        : .67em;
