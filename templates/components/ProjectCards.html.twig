@@ -17,6 +17,11 @@
                     </div>
                 </a>
             </div>
+        {% else %}
+            <div class="container-not-found d-flex flex-column mx-auto mt-5 text-center">
+                <p class="h3 mb-5">Aucun projet correspond à vos critères</p>
+                <img src="{{ asset('images/not_found.jpg') }}" alt="not found" class="img-fluid">
+            </div>
         {% endfor %}
     </div>
     <div class="navigation me-3 mt-3">

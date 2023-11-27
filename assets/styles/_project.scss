@@ -3,12 +3,17 @@
     grid-template-columns : repeat(auto-fit, minmax(250px, 1fr));
     gap                   : $space-base;
 
+    .container-not-found {
+        max-width : 500px;
+    }
+
     .card {
         background-color : tint-color($grey-light, 70);
         border-radius    : 0;
         margin           : 5px;
         border-width     : 1px;
         border-style     : solid;
+        max-width        : 350px;
     }
 
     .card-link {
