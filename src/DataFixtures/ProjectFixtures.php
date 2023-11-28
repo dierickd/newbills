@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Application;
 use App\Entity\Project;
 use App\Services\Slugify;
 use DateTimeImmutable;
@@ -27,6 +28,8 @@ class ProjectFixtures extends Fixture
      */
     public function load(ObjectManager $manager): void
     {
+        $applications = $manager->getRepository(Application::class)->findAll();
+
         for ($i = 0; $i < 50; $i++) {
             $name = $this->faker->company();
             $project = new Project();
@@ -36,6 +39,7 @@ class ProjectFixtures extends Fixture
             $project->setCreatedAt(new DateTimeImmutable("{$this->faker->date()}"));
             $project->setSelected(array_rand(self::SELECTED));
             $project->setSlug(Slugify::generate($name));
+            $project->setApplication($applications[array_rand($applications)]);
 
             $expert = rand(0, 100);
             $confirmed = rand(0, 100 - $expert);

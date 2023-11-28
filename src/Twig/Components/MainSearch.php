@@ -39,6 +39,6 @@ final class MainSearch extends AbstractController
         if ($this->searchDto->closed) $params['closed'] = $this->searchDto->closed;
         if ($this->searchDto->archived) $params['archived'] = $this->searchDto->archived;
         if ($this->searchDto->active) $params['active'] = $this->searchDto->active;
-        return $this->redirectToRoute('app_project_list', $params);
+        return $this->redirectToRoute('app_project_crud_index', $params);
     }
 }

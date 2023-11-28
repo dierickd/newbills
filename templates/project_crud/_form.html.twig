@@ -1,0 +1,14 @@
+{{ form_start(form, { action:  path('app_project_crud_edit', {slug: project.slug})}) }}
+<div>
+    <p class="h3">{{ form_widget(form.name) }}</p>
+    <p class="h6 fw-normal text-secondary">{{ form_widget(form.application) }}</p>
+</div>
+<div class="my-4">
+    {{ form_widget(form.description) }}
+</div>
+
+<div class="btn-group-sm ms-auto">
+    <a href="{{ path('app_project_crud_show', { slug: project.slug }) }}" class="btn d-inline-block ms-auto">Annuler</a>
+    <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+</div>
+{{ form_end(form) }}

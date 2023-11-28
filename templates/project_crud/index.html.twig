@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title 'Liste des projets' %}
+{% block title %}Project index{% endblock %}
 
 {% block body %}
     <div class="main-header"><h1 class="title">Liste des projets</h1></div>
@@ -10,4 +10,6 @@
         </div>
         <twig:ProjectCards :searchDto="searchDto" :request="request"></twig:ProjectCards>
     </div>
+
+    <a href="{{ path('app_project_crud_new') }}">Create new</a>
 {% endblock %}

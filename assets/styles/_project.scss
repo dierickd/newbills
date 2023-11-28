@@ -13,10 +13,10 @@
         margin           : 5px;
         border-width     : 1px;
         border-style     : solid;
-        max-width        : 350px;
     }
 
     .card-link {
+        min-width       : 250px;
         text-decoration : none;
         display         : block;
         border-radius   : 5px;
@@ -121,5 +121,31 @@
             border-color : transparent transparent transparent shade-color($middle, 50);
         }
     }
+}
 
+.section-header-project-detail {
+    border   : 1px solid rgba($grey-light, .5);
+    padding  : $space-2xl;
+    position : relative;
+
+    .btn-edit {
+        position      : absolute;
+        top           : 0;
+        right         : 0;
+        border-radius : 0;
+        opacity       : 0.25;
+        border-color  : rgba($grey-light, .5);
+        border-top    : none;
+        border-right  : none;
+    }
+
+    &:hover {
+        border-color : $grey-light;
+    }
+
+    &:hover .btn-edit {
+        background   : none;
+        opacity      : .5;
+        border-color : $grey-light;
+    }
 }

@@ -21,3 +21,24 @@ form {
 .form-check-input:focus {
     box-shadow : none;
 }
+
+form[name='project'] {
+    justify-content : unset;
+    flex-direction  : column;
+
+    textarea, select, input {
+        padding          : $space-xsmall;
+        background-color : #f9f9f9;
+        border           : 1px solid rgba($grey-light, 0.5);
+    }
+
+    textarea {
+        width      : 100%;
+        min-height : 150px;
+    }
+
+    button.btn {
+        width       : fit-content;
+        margin-left : auto;
+    }
+}
