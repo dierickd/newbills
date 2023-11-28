@@ -1,4 +1,4 @@
-.main-project {
+.main-project:not(.container-not-found) {
     display               : grid;
     grid-template-columns : repeat(auto-fit, minmax(250px, 1fr));
     gap                   : $space-base;
@@ -16,7 +16,7 @@
     }
 
     .card-link {
-        min-width       : 250px;
+        max-width       : 400px;
         text-decoration : none;
         display         : block;
         border-radius   : 5px;

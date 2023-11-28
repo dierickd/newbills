@@ -26,5 +26,19 @@ class Constants
     {
         return array_flip(self::STATUS);
     }
+
+    public static function getStatusName(int $value): string
+    {
+        return self::STATUS[$value];
+    }
+
+    public static function getStatusChange($action): int
+    {
+        return match ($action) {
+            'active' => 2,
+            'closed' => 1,
+            default => 3,
+        };
+    }
 }
 

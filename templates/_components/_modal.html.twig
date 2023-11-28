@@ -1,0 +1,61 @@
+{#  MODAL  #}
+<div class="modal fade" id="modalReopenProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5"
+                    id="staticBackdropLabel">
+                    {% if modalStatus == 'active' %} Cloture {% endif %}
+                    {% if modalStatus == 'closed' %} Réouverture {% endif %}
+                    {% if modalStatus == 'archived' %} Archivage {% endif %}
+                    de projet
+                </h1>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Vous êtes sur le point
+                    {% if modalStatus == 'active' %} de clôturer {% endif %}
+                    {% if modalStatus == 'closed' %} de réouvrir {% endif %}
+                    {% if modalStatus == 'archived' %} d'archiver {% endif %}
+                    le projet
+                    <b>{{ project.name }}</b>!
+                    <br>
+                    Voulez-vous continuer ?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Annuler</button>
+                <a href="{{ path('app_project_crud_status', {'action': modalStatus, 'slug': project.slug}) }}"
+                   type="button"
+                   class="btn btn-sm btn-primary">{{ modalStatus == 'active' ? 'Cloturer le projet' : 'Réouvrir le projet' }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#  MODAL  #}
+<div class="modal fade" id="modalarchivedProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Archivage de projet</h1>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Vous êtes sur le point d'archiver le projet
+                    <b>{{ project.name }}</b>!
+                    <br>
+                    Voulez-vous continuer ?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Annuler</button>
+                <a href="{{ path('app_project_crud_status', {'action': 'archived', 'slug': project.slug}) }}"
+                   type="button"
+                   class="btn btn-sm btn-primary">Archiver le projet</a>
+            </div>
+        </div>
+    </div>
+</div>

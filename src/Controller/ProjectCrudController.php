@@ -7,6 +7,7 @@ use App\Entity\Project;
 use App\Form\ProjectType;
 use App\Repository\ProjectRepository;
 use App\Services\Constants;
+use App\Services\Slugify;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,6 +37,14 @@ class ProjectCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $project->setCreatedAt(new \DateTimeImmutable());
+            $project->setStatus(1);
+            $project->setExpert(0);
+            $project->setConfirmed(100);
+            $project->setJunior(0);
+            $project->setSelected(1);
+            $project->setSlug(Slugify::generate($form['name']->getData()));
+
             $entityManager->persist($project);
             $entityManager->flush();
 
@@ -53,6 +62,7 @@ class ProjectCrudController extends AbstractController
     {
         return $this->render('project_crud/show.html.twig', [
             'project' => $project,
+            'modalStatus' => Constants::getStatusName($project->getStatus())
         ]);
     }
 
@@ -85,10 +95,10 @@ class ProjectCrudController extends AbstractController
         return $this->redirectToRoute('app_project_crud_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{action}/{slug}', name: 'app_project_crud_reopen')]
+    #[Route('/{action}/{slug}', name: 'app_project_crud_status', requirements: ['action' => 'active|closed|archived'])]
     public function reopen(string $action, Project $project, EntityManagerInterface $entityManager): Response
     {
-        $project->setStatus($action === 'open' ? 2 : 1);
+        $project->setStatus(Constants::getStatusChange($action));
         $entityManager->persist($project);
         $entityManager->flush();
 

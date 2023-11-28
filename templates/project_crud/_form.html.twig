@@ -1,4 +1,4 @@
-{{ form_start(form, { action:  path('app_project_crud_edit', {slug: project.slug})}) }}
+{{ form_start(form, { action: action, form_type: form_type}) }}
 <div>
     <p class="h3">{{ form_widget(form.name) }}</p>
     <p class="h6 fw-normal text-secondary">{{ form_widget(form.application) }}</p>
@@ -8,7 +8,13 @@
 </div>
 
 <div class="btn-group-sm ms-auto">
-    <a href="{{ path('app_project_crud_show', { slug: project.slug }) }}" class="btn d-inline-block ms-auto">Annuler</a>
+    {% if form_type == 'edit' %}
+        <a href="{{ path('app_project_crud_show', { slug: project.slug }) }}"
+           class="btn d-inline-block ms-auto">Annuler</a>
+    {% elseif form_type == 'new' %}
+        <a href="{{ path('app_project_crud_index') }}"
+           class="btn d-inline-block ms-auto">Annuler</a>
+    {% endif %}
     <button class="btn btn-success">{{ button_label|default('Save') }}</button>
 </div>
 {{ form_end(form) }}
