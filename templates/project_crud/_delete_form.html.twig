@@ -1,8 +1,4 @@
 <form class="form-delete" method="post" action="{{ path('app_project_crud_delete', {'id': project.id}) }}">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ project.id) }}">
-{#    <button class="btn btn-sm btn-outline-danger">Supprimer le projet</button>#}
-    <button type="button" class="d-inline-block btn btn-sm btn-outline-danger ms-2" data-bs-toggle="modal"
-            data-bs-target="#modalDeleteProject">
-        Supprimer le projet
-    </button>
+    <button class="btn btn-sm btn-danger">Supprimer le projet</button>
 </form>

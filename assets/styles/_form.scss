@@ -44,7 +44,13 @@ form[name='project'] {
 }
 
 .form-delete {
+    width : fit-content;
+
     button {
         width : fit-content;
     }
+}
+
+.btn-delete {
+    white-space : nowrap;
 }

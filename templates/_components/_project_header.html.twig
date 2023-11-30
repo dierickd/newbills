@@ -24,5 +24,8 @@
             <span class="d-inline-block text-warning">Le projet <b>{{ project.name }}</b> est actuellement archivé!</span>
         </div>
     {% endif %}
-    {{ include('project_crud/_delete_form.html.twig') }}
+    <button type="button" class="d-inline-block btn-delete btn btn-sm btn-outline-danger ms-2" data-bs-toggle="modal"
+            data-bs-target="#modalDeleteProject">
+        Supprimer le projet
+    </button>
 </div>

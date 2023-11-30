@@ -18,7 +18,8 @@
                 </p>
                 <br>
                 <small class="text-danger fst-italic">
-                    Il vous sera possible de {{ modalStatus == 'active' ? 'réouvrir' : 'clôturer' }} le projet à tout moment.
+                    Il vous sera possible de {{ modalStatus == 'active' ? 'réouvrir' : 'clôturer' }} le projet à tout
+                    moment.
                 </small>
             </div>
             <div class="modal-footer">
@@ -86,12 +87,10 @@
                         suppression</p>
                 {% endif %}
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-flex">
                 <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Annuler</button>
                 {% if modalStatus != 'active' %}
-                    <a href="{{ path('app_project_crud_delete', {'id': project.id}) }}"
-                       type="button"
-                       class="btn btn-sm btn-danger">Supprimer le projet</a>
+                    {{ include('project_crud/_delete_form.html.twig') }}
                 {% endif %}
             </div>
         </div>
