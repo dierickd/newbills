@@ -1,0 +1,26 @@
+<div{{ attributes }}>
+
+    <div class="d-flex justify-content-center flex-column gap-3 container" data-controller="level">
+        {% for lev in this.levelProject %}
+            <div class="card-level p-4 text-center {{ project.selected == lev.id ? 'selected' }}">
+                <p>
+                    <span class="d-block h5 text-uppercase text-primary">{{ lev.name }}</span>
+                    <span class="description">{{ lev.description }}</span>
+                </p>
+                {% if project.selected != lev.id and project.status == 1 %}
+                    <p class="btn btn-sm bg-secondary text-white rounded-0 label"
+                            {{ stimulus_controller(
+                                'level',
+                                {
+                                    infoUrl: path('app_project_crud_selected',
+                                    { slug: project.slug, select: lev.id })
+                                }
+                            ) }}
+                            {{ stimulus_action('level', 'selected', 'click') }}
+                    >Sélectionner</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+</div>

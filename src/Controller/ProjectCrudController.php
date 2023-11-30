@@ -29,6 +29,16 @@ class ProjectCrudController extends AbstractController
         ]);
     }
 
+    #[Route('/{slug}/{select<\d+>}', name: 'app_project_crud_selected', methods: ['GET'])]
+    public function selected(string $select, Project $project, EntityManagerInterface $entityManager): Response
+    {
+        $project->setSelected($select);
+        $entityManager->persist($project);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_project_crud_show', ['slug' => $project->getSlug()], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/new', name: 'app_project_crud_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {

@@ -1,0 +1,27 @@
+.card-level {
+    border          : 1px solid $grey;
+    max-width       : 300px;
+    min-height      : 215px;
+    display         : flex;
+    justify-content : space-between;
+    flex-direction  : column;
+}
+
+.card-level.selected {
+    border-color : $success;
+    border-width : 3px;
+}
+
+.card-level input {
+    display : none;
+}
+
+.card-level .label {
+    cursor        : pointer;
+    width         : fit-content;
+    margin-inline : auto;
+}
+
+.description {
+    white-space : normal;
+}
