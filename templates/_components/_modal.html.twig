@@ -6,35 +6,33 @@
             <div class="modal-header">
                 <h1 class="modal-title fs-5"
                     id="staticBackdropLabel">
-                    {% if modalStatus == 'active' %} Cloture {% endif %}
-                    {% if modalStatus == 'closed' %} Réouverture {% endif %}
-                    {% if modalStatus == 'archived' %} Archivage {% endif %}
-                    de projet
+                    {{ modalStatus == 'active' ? 'Cloture' : 'Réouverture' }} de projet
                 </h1>
             </div>
             <div class="modal-body">
                 <p>
-                    Vous êtes sur le point
-                    {% if modalStatus == 'active' %} de clôturer {% endif %}
-                    {% if modalStatus == 'closed' %} de réouvrir {% endif %}
-                    {% if modalStatus == 'archived' %} d'archiver {% endif %}
-                    le projet
+                    Vous êtes sur le point de {{ modalStatus == 'active' ? 'clôturer' : 'réouvrir' }} le projet
                     <b>{{ project.name }}</b>!
                     <br>
                     Voulez-vous continuer ?
                 </p>
+                <br>
+                <small class="text-danger fst-italic">
+                    Il vous sera possible de {{ modalStatus == 'active' ? 'réouvrir' : 'clôturer' }} le projet à tout moment.
+                </small>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Annuler</button>
                 <a href="{{ path('app_project_crud_status', {'action': modalStatus, 'slug': project.slug}) }}"
                    type="button"
-                   class="btn btn-sm btn-primary">{{ modalStatus == 'active' ? 'Cloturer le projet' : 'Réouvrir le projet' }}</a>
+                   class="btn btn-sm {{ modalStatus == 'active' ? 'btn-danger' : 'btn-success' }}
+">{{ modalStatus == 'active' ? 'Cloturer le projet' : 'Réouvrir le projet' }}</a>
             </div>
         </div>
     </div>
 </div>
 
-{#  MODAL  #}
+{#  MODAL ARCHIVED #}
 <div class="modal fade" id="modalarchivedProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -44,17 +42,57 @@
             </div>
             <div class="modal-body">
                 <p>
-                    Vous êtes sur le point d'archiver le projet
-                    <b>{{ project.name }}</b>!
+                    Vous êtes sur le point d'archiver le projet <b>{{ project.name }}</b>!
                     <br>
-                    Voulez-vous continuer ?
+                <p class="my-3 text-danger">
+                    <span class="fw-bold">ATTENTION !</span>
+                    <br>
+                    Une fois le projet archivé, il ne sera plus possible de le sortir des archives!
+                </p>
+                <br>
+                Voulez-vous continuer ?
                 </p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Annuler</button>
                 <a href="{{ path('app_project_crud_status', {'action': 'archived', 'slug': project.slug}) }}"
                    type="button"
-                   class="btn btn-sm btn-primary">Archiver le projet</a>
+                   class="btn btn-sm btn-warning">Archiver le projet</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#  MODAL DELETE #}
+<div class="modal fade" id="modalDeleteProject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Supression de projet</h1>
+            </div>
+            <div class="modal-body">
+                {% if modalStatus != 'active' %}
+                    <p> Vous êtes sur le point de supprimer le projet <span class="fw-bold">{{ project.name }}</span>!
+                    </p>
+                    <p class="my-3 text-danger">
+                        <span class="fw-bold">ATTENTION !</span>
+                        <br>
+                        <span class="fw-medium">La suppression est définitive et toutes les données relatives au projet seront définitivement perdues</span>!
+                    </p>
+                    <p>Voulez-vous continuer ?</p>
+                {% else %}
+                    <p class="text-danger">Vous ne pouvez pas supprimer un projet actif, clôturez-le pour effectuer sa
+                        suppression</p>
+                {% endif %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Annuler</button>
+                {% if modalStatus != 'active' %}
+                    <a href="{{ path('app_project_crud_delete', {'id': project.id}) }}"
+                       type="button"
+                       class="btn btn-sm btn-danger">Supprimer le projet</a>
+                {% endif %}
             </div>
         </div>
     </div>

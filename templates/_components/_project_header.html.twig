@@ -1,5 +1,4 @@
 <div class="d-flex justify-content-between align-items-center w-100">
-    {#    <div class="w-100"> #}
     {% if modalStatus == 'active' %}
         <div class="w-100">
             <span class="d-inline-block text-success">Le projet <b>{{ project.name }}</b> est actuellement ouvert!</span>
@@ -15,7 +14,7 @@
                     data-bs-target="#modalReopenProject">
                 Réouvrir le projet
             </button>
-            <button type="button" class="d-inline-block btn btn-sm text-warning border-warning ms-2" data-bs-toggle="modal"
+            <button type="button" class="d-inline-block btn btn-sm text-danger ms-2" data-bs-toggle="modal"
                     data-bs-target="#modalarchivedProject">
                 Archiver le projet
             </button>
