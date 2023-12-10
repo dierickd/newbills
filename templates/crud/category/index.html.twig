@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <div class="main-header d-flex justify-content-between align-items-center">
+        <h1 class="title">Liste des catégories</h1>
+        <a href="{{ path('app_category_crud_new') }}" class="btn btn-sm btn-primary d-inline-block">Créer une nouvelle
+            catégorie</a>
+    </div>
+
+    <div class="main-container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th colspan="2">Nom</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            {% for category in categories %}
+                <tr>
+                    <td class="td-action">
+                        <turbo-frame id="{{ category.id }}">
+                            <span class="d-flex gap-1 align-items-center">
+                            <a class="btn px-1" href="{{ path('app_category_crud_edit', {'id': category.id}) }}">
+                                <img src="{{ asset('images/edit.svg') }}" alt="Editer">
+                            </a>
+
+                            <button type="button" class="px-1 btn btn-icon"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalDeleteCategory-{{ category.id }}">
+                                <img src="{{ asset('images/trash.svg') }}" alt="delete">
+                            </button>
+                            <span class="ms-3">{{ category.name }}</span>
+                            </span>
+                        </turbo-frame>
+                    </td>
+                </tr>
+                {% include '_components/_modal_category.html.twig' with {'category': category,} %}
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucune catégorie trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

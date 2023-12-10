@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Category{% endblock %}
+
+{% block body %}
+
+    <turbo-frame id="{{ category.id }}">
+        {{ include('crud/category/_form.html.twig', {
+            'button_label': 'Mettre à jour',
+            'action': path('app_category_crud_edit', {id: category.id})
+        }) }}
+    </turbo-frame>
+
+{% endblock %}

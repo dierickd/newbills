@@ -5,3 +5,9 @@
 .btn-outline-secondary:hover {
     color : $light;
 }
+
+.btn.btn-icon, .btn.btn-icon:target, .btn.btn-icon:focus, .btn.btn-icon:active, .btn.btn-icon:visited, .btn.btn-icon:focus-within {
+    border     : none;
+    background : none;
+    outline    : none;
+}

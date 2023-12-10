@@ -21,7 +21,7 @@ class ProjectCrudController extends AbstractController
     #[Route('/', name: 'app_project_crud_index', methods: ['GET'])]
     public function index(ProjectRepository $projectRepository, Request $request, #[MapQueryString()] ?SearchDTO $searchDto = null): Response
     {
-        return $this->render('project_crud/index.html.twig', [
+        return $this->render('crud/project/index.html.twig', [
             'projects' => $projectRepository->findAll(),
             'STATUS' => Constants::getStatus(),
             'searchDto' => $searchDto,
@@ -61,7 +61,7 @@ class ProjectCrudController extends AbstractController
             return $this->redirectToRoute('app_project_crud_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('project_crud/new.html.twig', [
+        return $this->render('crud/project/new.html.twig', [
             'project' => $project,
             'form' => $form,
         ]);
@@ -70,7 +70,7 @@ class ProjectCrudController extends AbstractController
     #[Route('/{slug}', name: 'app_project_crud_show', methods: ['GET'])]
     public function show(Project $project): Response
     {
-        return $this->render('project_crud/show.html.twig', [
+        return $this->render('crud/project/show.html.twig', [
             'project' => $project,
             'modalStatus' => Constants::getStatusName($project->getStatus())
         ]);
@@ -88,7 +88,7 @@ class ProjectCrudController extends AbstractController
             return $this->redirectToRoute('app_project_crud_show', ['slug' => $project->getSlug()], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('project_crud/edit.html.twig', [
+        return $this->render('crud/project/edit.html.twig', [
             'project' => $project,
             'form' => $form,
         ]);

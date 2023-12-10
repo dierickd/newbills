@@ -1,0 +1,11 @@
+td {
+    vertical-align : middle;
+}
+
+.td-action {
+    width : 100px;
+
+    > span {
+        width : fit-content;
+    }
+}

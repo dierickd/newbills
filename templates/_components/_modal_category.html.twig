@@ -1,0 +1,25 @@
+{#  MODAL DELETE category #}
+<div class="modal fade" id="modalDeleteCategory-{{ category.id }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Supression de catégorie</h1>
+            </div>
+            <div class="modal-body">
+                <p> Vous êtes sur le point de supprimer la catégorie <span class="fw-bold">{{ category.name }}</span>!
+                </p>
+                <p class="my-3 text-danger">
+                    <span class="fw-bold">ATTENTION !</span>
+                    <br>
+                    <span class="fw-medium">La suppression est définitive et toutes les données relatives à la catégorie seront définitivement perdues</span>!
+                </p>
+                <p>Voulez-vous continuer ?</p>
+            </div>
+            <div class="modal-footer d-flex">
+                <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Annuler</button>
+                {{ include('crud/category/_delete_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+</div>
