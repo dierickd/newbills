@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}FeatureProject index{% endblock %}
+
+{% block body %}
+    <div class="main-header d-flex justify-content-between align-items-center">
+        <h1 class="title">Liste des fonctionnalités</h1>
+        <a href="{{ path('app_feature_crud_new') }}" class="btn btn-sm btn-primary d-inline-block">Créer une nouvelle
+            fonctionnalité</a>
+    </div>
+
+    <div class="container-main">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Catégorie</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for feature in features %}
+                <tr>
+                    <td class="td-action">
+                        <span class="d-flex gap-1 align-items-center">
+                            <a class="btn px-1" href="{{ path('app_feature_crud_edit', {'id': feature.id}) }}">
+                                <img src="{{ asset('images/edit.svg') }}" alt="Editer">
+                            </a>
+
+                            <button type="button" class="px-1 btn btn-icon"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#modalDeleteFeature-{{ feature.id }}">
+                                <img src="{{ asset('images/trash.svg') }}" alt="delete">
+                            </button>
+                            <span class="mx-3">{{ feature.name }}</span>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="me-3">{{ feature.category.name }}</span>
+                    </td>
+                    <td>
+                        <span class="me-3">{{ feature.description | truncate(250) }}</span>
+                    </td>
+                </tr>
+                {% include '_components/_modal_feature.html.twig' with {'feature': feature,} %}
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucune fonctionnalité trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

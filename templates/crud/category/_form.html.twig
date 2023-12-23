@@ -1,9 +1,9 @@
 {{ form_start(form, { action: action }) }}
-<div>
-    <p class="">{{ form_widget(form.name) }}</p>
-</div>
-<div class="btn-group-sm ms-auto">
+<div class="btn-group-sm me-3">
     <a href="{{ path('app_category_crud_index') }}" class="btn d-inline-block ms-auto">Annuler</a>
     <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+</div>
+<div class="me-auto">
+    <p class="">{{ form_widget(form.name) }}</p>
 </div>
 {{ form_end(form) }}

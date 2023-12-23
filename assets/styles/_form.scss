@@ -13,6 +13,10 @@ form {
     justify-content : flex-end;
 }
 
+form[name='feature'] {
+    flex-direction: column;
+}
+
 .form-check-input:checked {
     background-color : $primary;
     border-color     : $primary;
@@ -22,7 +26,7 @@ form {
     box-shadow : none;
 }
 
-form[name='project'] {
+form[name='project'], form[name='feature'] {
     justify-content : unset;
     flex-direction  : column;
 

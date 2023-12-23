@@ -10,26 +10,32 @@
         border-3 main-header d-flex justify-content-between align-items-center py-3">
         {% include '_components/_project_header.html.twig' %}
     </div>
-    <div class="main-container d-flex">
 
-        <section class="container">
-            <div class="section-header-project-detail">
-                <turbo-frame id="{{ project.id }}">
-                    <div>
-                        <p class="h3">{{ project.name }}</p>
-                        <p class="h6 fw-normal text-secondary">{{ project.application.name }}</p>
-                    </div>
-                    <div class="my-4">{{ project.description }}</div>
-                    {% if project.status == 1 %}
-                        <a href="{{ path('app_project_crud_edit', {'slug': project.slug}) }}"
-                           class="btn btn-outline-primary btn-edit">
-                            <img src="{{ asset('images/edit.svg') }}" alt="Modifier" class="img-fluid">
-                        </a>
-                    {% endif %}
-                </turbo-frame>
-            </div>
-        </section>
-        <twig:CardLevel :project="project"></twig:CardLevel>
+    <div class="container-main">
+        <div class="container-action container mb-3 ms-0">
+            <button type="button" class="btn btn-sm btn-outline-primary">Ajouter une fonctionnalité</button>
+        </div>
+
+        <div class="d-flex">
+            <section class="container">
+                <div class="section-header-project-detail">
+                    <turbo-frame id="{{ project.id }}">
+                        <div>
+                            <p class="h3">{{ project.name }}</p>
+                            <p class="h6 fw-normal text-secondary">{{ project.application.name }}</p>
+                        </div>
+                        <div class="my-4">{{ project.description }}</div>
+                        {% if project.status == 1 %}
+                            <a href="{{ path('app_project_crud_edit', {'slug': project.slug}) }}"
+                               class="btn btn-outline-primary btn-edit">
+                                <img src="{{ asset('images/edit.svg') }}" alt="Modifier" class="img-fluid">
+                            </a>
+                        {% endif %}
+                    </turbo-frame>
+                </div>
+            </section>
+            <twig:CardLevel :project="project"></twig:CardLevel>
+        </div>
     </div>
 
     {% include '_components/_modal_project.html.twig' with {'project': project, 'modalStatus': modalStatus} %}

@@ -1,0 +1,24 @@
+{{ form_start(form, { action: action, form_type: form_type}) }}
+<div class="row">
+    <div>
+        <p class="h4">{{ form_widget(form.name) }}</p>
+    </div>
+    <div>
+        <p>{{ form_widget(form.category) }}</p>
+    </div>
+    <div>
+        {{ form_widget(form.description) }}
+    </div>
+
+    <div class="btn-group-sm ms-auto mt-3">
+        {% if form_type == 'edit' %}
+            <a href="{{ path('app_feature_crud_show', { id: project.id }) }}"
+               class="btn d-inline-block ms-auto">Annuler</a>
+        {% elseif form_type == 'new' %}
+            <a href="{{ path('app_feature_crud_index') }}"
+               class="btn d-inline-block ms-auto">Annuler</a>
+        {% endif %}
+        <button class="btn btn-success">{{ button_label|default('Save') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}

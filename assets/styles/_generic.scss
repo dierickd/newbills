@@ -6,11 +6,17 @@ body {
     background-color : $white;
 }
 
-.main-container {
-    height   : calc(100vh - 4.5em);
-    overflow : auto;
-    padding  : $space-2xl;
-    width    : 100%;
+.container {
+    &-main {
+        height   : calc(100vh - 4.5em);
+        overflow : auto;
+        padding  : $space-2xl;
+        width    : 100%;
+    }
+
+    &-action {
+
+    }
 }
 
 .main-header {

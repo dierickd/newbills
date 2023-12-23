@@ -1,0 +1,4 @@
+<form class="form-delete" method="post" action="{{ path('app_feature_crud_delete', {'id': feature.id}) }}">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ feature.id) }}">
+    <button class="btn btn-sm btn-danger">Supprimer la fonctionnalité</button>
+</form>

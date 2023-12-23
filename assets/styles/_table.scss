@@ -9,3 +9,11 @@ td {
         width : fit-content;
     }
 }
+
+tr > th:first-child {
+    padding-left : 90px;
+}
+
+tr > td:not(:first-child) {
+    padding-inline : $space-xsmall;
+}
