@@ -20,7 +20,8 @@ class ProjectType extends AbstractType
             ->add('name', TextType::class, [
                 'required' => true,
                 'attr' => [
-                    'placeholder' => 'Nom du projet'
+                    'placeholder' => 'Nom du projet',
+                    'class' => 'form-control'
                 ]
             ])
 //            ->add('created_at')

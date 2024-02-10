@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\DTO\SearchDTO;
+use App\Entity\Feature;
 use App\Entity\Project;
+use App\Form\FeatureType;
 use App\Form\ProjectType;
+use App\Repository\CategoryRepository;
+use App\Repository\FeatureRepository;
 use App\Repository\ProjectRepository;
 use App\Services\Constants;
 use App\Services\Slugify;
@@ -67,12 +71,22 @@ class ProjectCrudController extends AbstractController
         ]);
     }
 
-    #[Route('/{slug}', name: 'app_project_crud_show', methods: ['GET'])]
-    public function show(Project $project): Response
+    #[Route('/{slug}', name: 'app_project_crud_show', methods: ['GET', 'POST'])]
+    public function show(Request $request, Project $project): Response
     {
+        $featureProject = new Feature();
+
+        $form = $this->createForm(FeatureType::class, $featureProject);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            dump("Hello");
+        }
+
         return $this->render('crud/project/show.html.twig', [
             'project' => $project,
-            'modalStatus' => Constants::getStatusName($project->getStatus())
+            'modalStatus' => Constants::getStatusName($project->getStatus()),
+            'form' => $form,
         ]);
     }
 

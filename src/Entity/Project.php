@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,6 +46,14 @@ class Project
     #[ORM\ManyToOne(inversedBy: 'projects')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Application $application = null;
+
+    #[ORM\ManyToMany(targetEntity: Feature::class, inversedBy: 'projects')]
+    private Collection $featureProject;
+
+    public function __construct()
+    {
+        $this->featureProject = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -166,6 +176,30 @@ class Project
     public function setApplication(?Application $application): static
     {
         $this->application = $application;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Feature>
+     */
+    public function getFeatureProject(): Collection
+    {
+        return $this->featureProject;
+    }
+
+    public function addFeatureProject(Feature $featureProject): static
+    {
+        if (!$this->featureProject->contains($featureProject)) {
+            $this->featureProject->add($featureProject);
+        }
+
+        return $this;
+    }
+
+    public function removeFeatureProject(Feature $featureProject): static
+    {
+        $this->featureProject->removeElement($featureProject);
 
         return $this;
     }

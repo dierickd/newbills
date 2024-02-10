@@ -7,11 +7,12 @@ use App\Form\FeatureType;
 use App\Repository\FeatureRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/feature/project/crud')]
+#[Route('/feature')]
 class FeatureCrudController extends AbstractController
 {
     #[Route('/', name: 'app_feature_crud_index', methods: ['GET'])]
@@ -48,6 +49,13 @@ class FeatureCrudController extends AbstractController
         return $this->render('crud/feature/show.html.twig', [
             'feature' => $feature,
         ]);
+    }
+
+    #[Route('/axios/{id}', name: 'app_feature_axios_show', methods: ['GET'])]
+    public function axios(Feature $feature, FeatureRepository $featureRepository, int $id): JsonResponse
+    {
+        $feat = $featureRepository->find($id);
+        return new JsonResponse(["message" => $feat], Response::HTTP_OK);
     }
 
     #[Route('/{id}/edit', name: 'app_feature_crud_edit', methods: ['GET', 'POST'])]

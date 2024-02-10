@@ -1,0 +1,31 @@
+{#  MODAL DELETE category #}
+<div class="modal fade" id="modalProjectFeature" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="fs-5" id="staticBackdropLabel">Ajouter une fonctionnalité</h1>
+            </div>
+            <div class="modal-body">
+                {{ form_start(form) }}
+                <div class="mb-3">
+                    {{ form_label(form.category) }}
+                    {{ form_widget(form.category) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description) }}
+                </div>
+            </div>
+            <div class="modal-footer d-flex">
+                <button type="button" class="btn btn-sm" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-sm btn-success" data-bs-dismiss="modal" formnovalidate>Ajouter</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>

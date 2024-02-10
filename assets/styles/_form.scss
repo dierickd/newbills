@@ -7,14 +7,19 @@ label {
     white-space : nowrap;
 }
 
-form {
+form:not([name='feature']) {
     width           : 100%;
     display         : flex;
     justify-content : flex-end;
 }
 
 form[name='feature'] {
-    flex-direction: column;
+    border  : 1px solid rgba($grey-light, .5);
+    padding : $space-base;
+}
+
+form[name='feature'] {
+    flex-direction : column;
 }
 
 .form-check-input:checked {
