@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Category;
 use App\Entity\Feature;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,6 +24,10 @@ class FeatureRepository extends ServiceEntityRepository
         parent::__construct($registry, Feature::class);
     }
 
+    /**
+     * @param Category $category
+     * @return array
+     */
     public function findByFeatureOrderedByAscName(Category $category): array
     {
         return $this->createQueryBuilder('f')

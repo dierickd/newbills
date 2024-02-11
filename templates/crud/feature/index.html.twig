@@ -32,11 +32,11 @@
                                     data-bs-target="#modalDeleteFeature-{{ feature.id }}">
                                 <img src="{{ asset('images/trash.svg') }}" alt="delete">
                             </button>
-                            <span class="mx-3">{{ feature.name }}</span>
+                            <span class="mx-3 min-width[120px]">{{ feature.name }}</span>
                         </span>
                     </td>
                     <td>
-                        <span class="me-3">{{ feature.category.name }}</span>
+                        <span class="me-3 min-width[120px] d-block">{{ feature.category.name }}</span>
                     </td>
                     <td>
                         <span class="me-3">{{ feature.description | truncate(250) }}</span>

@@ -29,3 +29,9 @@ html, body {
         font-size    : $h3-font-size;
     }
 }
+
+@for $i from 10 through 200 {
+    .min-width\[#{$i + "px"}\] {
+        min-width: #{$i}px;
+    }
+}

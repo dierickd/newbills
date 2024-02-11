@@ -11,7 +11,7 @@
         {% include '_components/_project_header.html.twig' %}
     </div>
 
-    <div class="container-main">
+    <div class="container mt-5">
 
         <div class="d-flex">
             <section class="container">
@@ -30,44 +30,20 @@
                         {% endif %}
                     </turbo-frame>
                 </div>
-
-                <div class="accordion" id="accordionExample">
-                    <div class="container-action container my-3 p-0">
-                        <button class="d-block btn btn-sm btn-outline-success ms-0 mb-3 ms-auto" type="button"
-                                data-bs-toggle="collapse"
-                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                            Ajouter une fonctionnalité
-                        </button>
-
-                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
-                             data-bs-parent="#accordionExample">
-                            <div class="accordion-body p-0">
-                                {{ form_start(form) }}
-                                <div class="row g-3 mb-3">
-                                    <div class="col">
-                                        {{ form_label(form.category) }}
-                                        {{ form_widget(form.category) }}
-                                    </div>
-                                    <div class="col">
-                                        {{ form_label(form.name) }}
-                                        {{ form_widget(form.name) }}
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        {{ form_label(form.description) }}
-                                        {{ form_widget(form.description) }}
-                                    </div>
-                                </div>
-                                <button type="submit" class="d-block ms-auto btn btn-sm btn-success" formnovalidate>
-                                    Ajouter
-                                </button>
-                                {{ form_end(form) }}
-                            </div>
+                {% if project.status == 1 %}
+                    <div class="p-0 mt-3">
+                        {{ form_start(form) }}
+                        <p class="fw-semibold">Ajouter une fonctionnalité</p>
+                        <div class="d-flex align-content-end justify-content-between gap-3">
+                            <div class="w-100">{{ form_widget(form.category) }}</div>
+                            <div class="w-100">{{ form_widget(form.name) }}</div>
+                            <button type="submit" class="w-auto d-inline btn btn-sm btn-outline-success" formnovalidate>
+                                Ajouter
+                            </button>
                         </div>
+                        {{ form_end(form) }}
                     </div>
-                </div>
-
+                {% endif %}
             </section>
 
             <twig:CardLevel :project="project"></twig:CardLevel>
@@ -80,33 +56,4 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const categorySelectElt = document.getElementById('feature_category');
-
-            categorySelectElt.addEventListener('change', function (e) {
-                const formEl = categorySelectElt.closest('form');
-
-                fetch(formEl.action, {
-                    method: formEl.method,
-                    body: new FormData(formEl)
-                })
-                    .then(response => response.text())
-                    .then(html => {
-                        const parser = new DOMParser();
-                        const doc = parser.parseFromString(html, 'text/html');
-                        const newFeatureFormFieldEl = doc.getElementById('feature_name');
-
-                        newFeatureFormFieldEl.addEventListener('change', function (e) {
-                            e.target.classList.remove('is-invalid');
-                        });
-
-                        document.getElementById('feature_name').replaceWith(newFeatureFormFieldEl);
-                    })
-                    .catch(function (err) {
-                        console.warn('Something went wrong.', err);
-                    });
-            });
-        })
-    </script>
 {% endblock %}

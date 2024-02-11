@@ -16,7 +16,7 @@ class Feature
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::STRING, length: 255)]
     private ?string $name = null;
 
     #[ORM\ManyToOne(inversedBy: 'features')]
@@ -99,5 +99,10 @@ class Feature
         }
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name;
     }
 }

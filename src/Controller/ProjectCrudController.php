@@ -5,10 +5,9 @@ namespace App\Controller;
 use App\DTO\SearchDTO;
 use App\Entity\Feature;
 use App\Entity\Project;
+use App\Form\CategoryFeatureType;
 use App\Form\FeatureType;
 use App\Form\ProjectType;
-use App\Repository\CategoryRepository;
-use App\Repository\FeatureRepository;
 use App\Repository\ProjectRepository;
 use App\Services\Constants;
 use App\Services\Slugify;
@@ -74,9 +73,8 @@ class ProjectCrudController extends AbstractController
     #[Route('/{slug}', name: 'app_project_crud_show', methods: ['GET', 'POST'])]
     public function show(Request $request, Project $project): Response
     {
-        $featureProject = new Feature();
-
-        $form = $this->createForm(FeatureType::class, $featureProject);
+        $categoryFeature = new Feature();
+        $form = $this->createForm(CategoryFeatureType::class, $categoryFeature);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

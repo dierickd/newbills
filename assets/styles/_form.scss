@@ -7,13 +7,17 @@ label {
     white-space : nowrap;
 }
 
-form:not([name='feature']) {
+.form-control:focus, .form-select:focus {
+    box-shadow : none;
+}
+
+form:not([name='category_feature']) {
     width           : 100%;
     display         : flex;
     justify-content : flex-end;
 }
 
-form[name='feature'] {
+form[name='category_feature'] {
     border  : 1px solid rgba($grey-light, .5);
     padding : $space-base;
 }
