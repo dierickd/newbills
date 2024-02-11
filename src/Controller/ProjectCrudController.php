@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\DTO\SearchDTO;
 use App\Entity\Feature;
 use App\Entity\Project;
+use App\Entity\ProjectFeature;
 use App\Form\CategoryFeatureType;
 use App\Form\FeatureType;
 use App\Form\ProjectType;
@@ -71,14 +72,25 @@ class ProjectCrudController extends AbstractController
     }
 
     #[Route('/{slug}', name: 'app_project_crud_show', methods: ['GET', 'POST'])]
-    public function show(Request $request, Project $project): Response
+    public function show(Request $request, Project $project, EntityManagerInterface $entityManager): Response
     {
         $categoryFeature = new Feature();
         $form = $this->createForm(CategoryFeatureType::class, $categoryFeature);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump("Hello");
+            $data = $form->getData();
+            $idFeature = $form->get('name')->getData()?->getId();
+
+            if ($idFeature) {
+                $pf = new ProjectFeature();
+                $pf->setProjectId($project?->getId());
+                $pf->setFeatureId($idFeature);
+                $entityManager->persist($pf);
+                $entityManager->flush();
+
+                $this->redirectToRoute('app_project_crud_show', ['slug' => $project->getSlug()]);
+            }
         }
 
         return $this->render('crud/project/show.html.twig', [
