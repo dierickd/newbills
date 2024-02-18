@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\ProjectsFeaturesRepository;
+use App\Repository\ProjectFeatureRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProjectsFeaturesRepository::class)]
-class ProjectsFeatures
+#[ORM\Entity(repositoryClass: ProjectFeatureRepository::class)]
+class ProjectFeature
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]

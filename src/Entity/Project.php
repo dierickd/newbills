@@ -48,11 +48,11 @@ class Project
     private ?Application $application = null;
 
     #[ORM\ManyToMany(targetEntity: Feature::class, inversedBy: 'projects')]
-    private Collection $featureProject;
+    private Collection $ProjectFeature;
 
     public function __construct()
     {
-        $this->featureProject = new ArrayCollection();
+        $this->ProjectFeature = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -183,23 +183,23 @@ class Project
     /**
      * @return Collection<int, Feature>
      */
-    public function getFeatureProject(): Collection
+    public function getProjectFeature(): Collection
     {
-        return $this->featureProject;
+        return $this->ProjectFeature;
     }
 
-    public function addFeatureProject(Feature $featureProject): static
+    public function addProjectFeature(Feature $ProjectFeature): static
     {
-        if (!$this->featureProject->contains($featureProject)) {
-            $this->featureProject->add($featureProject);
+        if (!$this->ProjectFeature->contains($ProjectFeature)) {
+            $this->ProjectFeature->add($ProjectFeature);
         }
 
         return $this;
     }
 
-    public function removeFeatureProject(Feature $featureProject): static
+    public function removeProjectFeature(Feature $ProjectFeature): static
     {
-        $this->featureProject->removeElement($featureProject);
+        $this->ProjectFeature->removeElement($ProjectFeature);
 
         return $this;
     }

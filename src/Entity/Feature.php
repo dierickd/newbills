@@ -25,7 +25,7 @@ class Feature
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'featureProject')]
+    #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'ProjectFeature')]
     private Collection $projects;
 
     public function __construct()
@@ -86,7 +86,7 @@ class Feature
     {
         if (!$this->projects->contains($project)) {
             $this->projects->add($project);
-            $project->addFeatureProject($this);
+            $project->addProjectFeature($this);
         }
 
         return $this;
@@ -95,7 +95,7 @@ class Feature
     public function removeProject(Project $project): static
     {
         if ($this->projects->removeElement($project)) {
-            $project->removeFeatureProject($this);
+            $project->removeProjectFeature($this);
         }
 
         return $this;
