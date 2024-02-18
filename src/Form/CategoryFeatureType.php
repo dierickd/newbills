@@ -7,6 +7,7 @@ use App\Entity\Feature;
 use App\Repository\CategoryRepository;
 use App\Repository\FeatureRepository;
 use Doctrine\ORM\EntityRepository;
+use phpDocumentor\Reflection\Project;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -42,7 +43,7 @@ class CategoryFeatureType extends AbstractType
             ]);
 
         $formModifier = function (FormInterface $form, Category $category = null) {
-            $features = $category === null ? [] : $this->featureRepository->findByFeatureOrderedByAscName($category);
+            $features = $category === null ? [] : $this->featureRepository->findByFeatureOrderedByAscName($category, $form->getData());
 
             $form->add('name', EntityType::class, [
                 'class' => Feature::class,

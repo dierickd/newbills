@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\DTO\SearchDTO;
 use App\Entity\Feature;
 use App\Entity\Project;
-use App\Entity\ProjectFeature;
+use App\Entity\ProjectsFeatures;
 use App\Form\CategoryFeatureType;
 use App\Form\FeatureType;
 use App\Form\ProjectType;
@@ -83,7 +83,7 @@ class ProjectCrudController extends AbstractController
             $idFeature = $form->get('name')->getData()?->getId();
 
             if ($idFeature) {
-                $pf = new ProjectFeature();
+                $pf = new ProjectsFeatures();
                 $pf->setProjectId($project?->getId());
                 $pf->setFeatureId($idFeature);
                 $entityManager->persist($pf);

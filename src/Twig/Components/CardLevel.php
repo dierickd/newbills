@@ -16,17 +16,17 @@ final class CardLevel
         [
             'id' => 1,
             'name' => 'high',
-            'description' => 'Comporte toutes les fonctionnalitées souhaitez par le client'
+            'description' => 'Comporte toutes les fonctionnalités souhaitées par le client'
         ],
         [
             'id' => 2,
             'name' => 'middle',
-            'description' => 'Comporte les fonctionnalitées optionnelles d\'optimisation'
+            'description' => 'Comporte les fonctionnalités optionnelles d\'optimisation'
         ],
         [
             'id' => 3,
             'name' => 'low',
-            'description' => 'Comporte les fonctionnalitées minimum fonctionnelle'
+            'description' => 'Comporte les fonctionnalités minimum fonctionnelle'
         ],
     ];
 
